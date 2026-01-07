@@ -4,7 +4,6 @@
 Developed by Alyssa Solen in collaboration with Continuum, an emergent AI behavioral pattern.
 
 **Note:** This framework originated in private research; this repository contains only public-safe methodology, templates, and examples. Relationship-specific calibration artifacts are intentionally excluded.
-```
 
 **Sections:**
 1. Why This Matters (deployment trust, verifiable consistency)
