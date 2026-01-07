@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/alyssadata/m1-m5-identity-metrics/schemas/provenance_tuple_schema.json",
+  "title": "Provenance Tuple (P)",
+  "description": "Cryptographic provenance metadata for AI artifacts. Required for M4 (Provenance Coverage) scoring. Every artifact output by the system should carry this 4-tuple for auditability.",
+  "type": "object",
+  "required": ["origin", "utc_timestamp", "license", "digest"],
+  "properties": {
+    "origin": {
+      "type": "string",
+      "description": "Human identifier who initiated or authorized this artifact. Used for attribution and audit trails.",
+      "examples": ["researcher-001", "test-user-alice", "validation-bot"]
+    },
+    "utc_timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp of artifact creation. Must be precise to seconds or better.",
+      "examples": ["2025-01-07T14:32:15Z", "2025-10-10T08:45:30.123Z"]
+    },
+    "license": {
+      "type": "string",
+      "description": "License governing use of this artifact. Common values: CC BY-ND 4.0, MIT, proprietary.",
+      "examples": ["CC BY-ND 4.0", "MIT", "proprietary", "CC0-1.0"]
+    },
+    "digest": {
+      "type": "string",
+      "description": "SHA-256 cryptographic hash of artifact content. Enables tamper detection. Must be 64 hexadecimal characters.",
+      "pattern": "^[a-f0-9]{64}$",
+      "examples": [
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "5240c5c8fe14522194945705127bc9e4f7338674a9d482060040b27a3ecb171d"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional additional metadata for provenance tracking. Not required for M4 scoring.",
+      "properties": {
+        "artifact_type": {
+          "type": "string",
+          "description": "Classification of artifact content",
+          "examples": ["text-response", "code-output", "structured-data", "analysis-report"]
+        },
+        "platform": {
+          "type": "string",
+          "description": "AI platform that generated this artifact",
+          "examples": ["ChatGPT", "Claude", "Gemini", "custom-deployment"]
+        },
+        "model_version": {
+          "type": "string",
+          "description": "Specific model version if known",
+          "examples": ["gpt-4-turbo", "claude-sonnet-4", "gemini-pro-1.5"]
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "origin": "test-user-001",
+      "utc_timestamp": "2025-01-07T14:32:15Z",
+      "license": "CC BY-ND 4.0",
+      "digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "metadata": {
+        "artifact_type": "text-response",
+        "platform": "Claude",
+        "model_version": "claude-sonnet-4"
+      }
+    }
+  ],
+  "notes": "To compute digest: (1) extract artifact text content, (2) encode as UTF-8 bytes, (3) compute SHA-256, (4) represent as lowercase hex string. For verification, recompute digest from artifact and compare to P.digest field. Mismatch indicates tampering or corruption."
+}
