@@ -167,8 +167,9 @@ GitHub repository: https://github.com/alyssadata/m1-m5-identity-metrics
 
 ```
 m1-m5-identity-metrics/
+├── .gitignore
+├── LICENSE
 ├── README.md
-├── LICENSE (CC BY-ND 4.0)
 ├── /docs
 │   ├── metrics_definitions.md (M1-M5: inputs/outputs, scoring)
 │   ├── axioms.md (A0-A5 as falsifiable constraints)
