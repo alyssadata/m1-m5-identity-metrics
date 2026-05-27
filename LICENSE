@@ -60,4 +60,4 @@ Unauthorized derivatives, adaptations, or generalized versions are non-canon.
 
 Copyright © 2026 Alyssa Solen.
 
-Some rights reserved under CC BY-ND 4.0.
+All rights reserved except as expressly granted under the Creative Commons Attribution-NoDerivatives 4.0 International License.
